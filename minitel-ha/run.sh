@@ -28,5 +28,8 @@ meteo:
   weather_entity: "weather.forecast_maison"
 YAML
 
+bashio::log.info "Découverte automatique des entités HA"
+python3 /app/discover.py
+
 bashio::log.info "Démarrage Minitel-HA — 3615 MAISON"
 exec python3 /app/server.py
