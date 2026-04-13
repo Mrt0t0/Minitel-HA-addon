@@ -1,5 +1,6 @@
 #!/usr/bin/with-contenv bashio
 set -e
+
 HA_URL=$(bashio::config 'ha_url')
 HA_TOKEN=$(bashio::config 'ha_token')
 SPLASH=$(bashio::config 'splash_seconds')
