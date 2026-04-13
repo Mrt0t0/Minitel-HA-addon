@@ -5,30 +5,38 @@ HA_URL=$(bashio::config 'ha_url')
 HA_TOKEN=$(bashio::config 'ha_token')
 SPLASH=$(bashio::config 'splash_seconds')
 ROTATE=$(bashio::config 'auto_rotate')
-LANG=$(bashio::config 'language')
+LANGUAGE=$(bashio::config 'language')
+WEATHER_ENTITY=$(bashio::config 'weather_entity')
+ASSISTANT_AGENT_ID=$(bashio::config 'assistant_agent_id')
+ASSISTANT_AGENT_NAME=$(bashio::config 'assistant_agent_name')
 
 cat > /app/config.yaml << YAML
 homeassistant:
   url: "${HA_URL}"
   token: "${HA_TOKEN}"
+
 server:
   vt_port: 3615
   http_port: 8080
+
 display:
   splash_seconds: ${SPLASH}
+
 archives:
   folder: "static/archives"
   auto_rotate: ${ROTATE}
-A:
-  language: "${LANG}"
+
+assistant:
+  language: "${LANGUAGE}"
   agents:
-    - id: "home_assistant"
-      name: "Assistant HA"
+    - id: "${ASSISTANT_AGENT_ID}"
+      name: "${ASSISTANT_AGENT_NAME}"
+
 meteo:
-  weather_entity: "weather.forecast_maison"
+  weather_entity: "${WEATHER_ENTITY}"
 YAML
 
-bashio::log.info "Découverte automatique des entités HA"
+bashio::log.info "Découverte automatique des entités Home Assistant"
 python3 /app/discover.py
 
 bashio::log.info "Démarrage Minitel-HA — 3615 MAISON"
