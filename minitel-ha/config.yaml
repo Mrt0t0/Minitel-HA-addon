@@ -4,28 +4,37 @@ version: "1.0.0"
 slug: "minitel_ha"
 url: "https://github.com/Mrt0t0/Minitel-HA-addon"
 init: false
+
 arch:
   - aarch64
   - amd64
   - armv7
   - armhf
-startup: application
-boot: manual
+
 ports:
   3615/tcp: 3615
   8080/tcp: 8080
+
 ports_description:
-  3615/tcp: "WebSocket Minitel (ESP32/TelnetPro)"
+  3615/tcp: "WebSocket Minitel (ESP32 / TelnetPro / Minimit)"
   8080/tcp: "Interface navigateur web"
+
 options:
   ha_url: "http://homeassistant.local:8123"
   ha_token: ""
   splash_seconds: 7
   auto_rotate: 30
   language: "fr"
+  weather_entity: "weather.forecast_maison"
+  assistant_agent_id: "home_assistant"
+  assistant_agent_name: "Assistant HA"
+
 schema:
   ha_url: str
-  ha_token: str
+  ha_token: password
   splash_seconds: int
   auto_rotate: int
   language: str
+  weather_entity: str
+  assistant_agent_id: str
+  assistant_agent_name: str
