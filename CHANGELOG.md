@@ -1,4 +1,4 @@
-# What's new in v1.1.1
+# What's new in v1.1
 
 - **Fix: add-on update/build failure**
   Added the missing `build.yaml` mapping each supported architecture to its Home Assistant base image, so the Supervisor can resolve `BUILD_FROM` when building the Docker image (fixes `base name ($BUILD_FROM) should not be blank`).
