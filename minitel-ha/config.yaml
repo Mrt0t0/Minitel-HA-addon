@@ -1,6 +1,6 @@
 name: "Minitel-HA"
 description: "Controle Home Assistant via Minitel - 3615 MAISON / Control HA from a Minitel"
-version: "1.1.0"
+version: "1.1.1"
 slug: "minitel_ha"
 url: "https://github.com/Mrt0t0/Minitel-HA"
 init: false
@@ -16,8 +16,9 @@ ports_description:
 map:
   - share:rw
 options:
-  ha_url: "http://homeassistant.local:8123"
+  ha_url: "http://homeassistant:8123"
   ha_token: ""
+  auto_discovery: true
   splash_seconds: 7
   auto_rotate: 30
   language: "fr"
@@ -25,6 +26,7 @@ options:
 schema:
   ha_url: str
   ha_token: password
+  auto_discovery: bool
   splash_seconds: int(0,60)
   auto_rotate: int(0,600)
   language: list(fr|en)
