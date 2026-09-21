@@ -1,11 +1,27 @@
-## What’s new in v1.1
+# What’s new in v1.1
 
-| Area | Improvement |
-|---|---|
-| **Installation** | Official Home Assistant add-on — install in a few clicks, with no command line required. |
-| **Performance** | Optimized Home Assistant state retrieval: a single `GET /api/states` request replaces one request per entity (**51 requests → 1**), with a 2-second cache. |
-| **API** | Added `GET /api/archives/list` and `GET /api/archives/vdt/{name}` endpoints. These routes are required for the in-browser `.vdt` archive reader. |
-| **Modes** | **AI Assistant**, **Archives**, and general **Help** are now available both in the browser interface and on the Minitel. |
-| **Videotex** | Improved compatibility for `ESC 0x58`, `0x59`, `0x5A`, `0x5C`, `0x5D`, `0x5F` sequences to match **STUM1B** behavior. Double-height text is now correctly anchored at the bottom. |
-| **Robustness** | Empty YAML keys are now tolerated. Improved shutdown behavior ensures sessions and timers are closed cleanly. |
-| **Security** | Added directory-traversal protection for the `/api/archives/vdt/` endpoint. |
+- **Official Home Assistant add-on**
+  Install in just a few clicks — no command line required.
+
+- **Faster Home Assistant data loading**
+  Replaced one API request per entity with a single `GET /api/states` call  
+  (**51 requests → 1**), with a 2-second cache.
+
+- **New archive API**
+  - `GET /api/archives/list`
+  - `GET /api/archives/vdt/{name}`
+
+  These endpoints enable the in-browser `.vdt` archive reader.
+
+- **New available modes**
+  **AI Assistant**, **Archives**, and **Help** are now available both in the browser interface and directly on the Minitel.
+
+- **Improved Videotex compatibility**
+  `ESC 0x58`, `0x59`, `0x5A`, `0x5C`, `0x5D`, and `0x5F` sequences now match **STUM1B** behavior.  
+  Double-height text is correctly anchored to the bottom of its display area.
+
+- **More robust operation**
+  Empty YAML keys are tolerated, and shutdown now cleanly closes active sessions and timers.
+
+- **Security hardening**
+  Added directory-traversal protection for `/api/archives/vdt/`.
