@@ -1,10 +1,15 @@
 name: "Minitel-HA"
 description: "Controle Home Assistant via Minitel - 3615 MAISON / Control HA from a Minitel"
-version: "1.2.0"
+version: "1.3.0"
 slug: "minitel_ha"
 url: "https://github.com/Mrt0t0/Minitel-HA"
 init: false
 homeassistant_api: true
+ingress: true
+ingress_port: 8080
+panel_icon: mdi:monitor
+panel_title: Minitel
+watchdog: "http://[HOST]:[PORT:8080]/"
 arch:
   - aarch64
   - amd64
@@ -13,12 +18,14 @@ ports:
   8080/tcp: 8080
 ports_description:
   3615/tcp: "WebSocket Minitel (ESP32/TelnetPro/Minimit)"
-  8080/tcp: "Interface navigateur / Web browser UI"
+  8080/tcp: "Emulateur navigateur hors ingress / Browser emulator outside ingress"
 map:
-  - share:rw
+  - type: share
+    read_only: false
 options:
   ha_url: ""
   ha_token: ""
+  access_code: ""
   auto_discovery: true
   splash_seconds: 7
   auto_rotate: 30
@@ -27,6 +34,7 @@ options:
 schema:
   ha_url: str?
   ha_token: password?
+  access_code: password?
   auto_discovery: bool
   splash_seconds: int(0,60)
   auto_rotate: int(0,600)

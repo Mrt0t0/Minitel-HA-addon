@@ -1,0 +1,28 @@
+configuration:
+  ha_url:
+    name: URL de Home Assistant
+    description: Facultatif. Seulement pour viser une autre instance HA (défaut http://homeassistant:8123 si un token est saisi).
+  ha_token:
+    name: Token Home Assistant
+    description: Facultatif. Long-Lived Access Token. Vide, l'add-on utilise le token Supervisor.
+  access_code:
+    name: Code d'accès
+    description: Facultatif. Demandé sur le Minitel et dans le navigateur (port 8080). L'accès par la barre latérale HA (ingress) n'en a pas besoin.
+  auto_discovery:
+    name: Découverte automatique
+    description: Au premier démarrage, cherche les lampes et prises de Home Assistant.
+  splash_seconds:
+    name: Écran d'accueil (secondes)
+    description: Durée de l'écran d'accueil, 0 pour le désactiver.
+  auto_rotate:
+    name: Rotation des archives (secondes)
+    description: Défilement automatique de la liste des pages .vdt, 0 pour le désactiver.
+  language:
+    name: Langue
+    description: Langue des écrans et de l'assistant.
+  weather_entity:
+    name: Entité météo
+    description: Facultatif. Entité weather.xxx utilisée pour les prévisions.
+network:
+  3615/tcp: WebSocket Minitel (ESP32 / TelnetPro / Minimit)
+  8080/tcp: Émulateur navigateur hors ingress

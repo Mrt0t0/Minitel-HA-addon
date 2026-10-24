@@ -1,3 +1,39 @@
+# What's new in v1.3.0
+
+- **Real time**
+  The add-on subscribes to the Home Assistant WebSocket: state changes show
+  up immediately and only the affected lines are redrawn. It falls back to
+  polling if the WebSocket is unavailable.
+
+- **Sidebar and access code**
+  Minitel-HA opens from the Home Assistant sidebar (ingress). New optional
+  `access_code` option for the Minitel and the browser on port 8080:
+  3 attempts per connection, IP blocked for 5 minutes after 5 failures.
+
+- **Browser = real Minitel emulator**
+  The browser now shows exactly the Minitel pages (row 0, accents, cursor,
+  double size), with physical and on-screen keyboards. `.vdt` pages can be
+  uploaded from the emulator.
+
+- **New features**
+  - Sensors mode (`C`) with a 24h semi-graphic chart.
+  - Covers, thermostats, media players, locks and fans; `SUITE` / `RETOUR`
+    adjust the selected device (brightness, position, setpoint, volume).
+  - Alerts on the Minitel row 0 (`alerts` in `/share/minitel-ha/config.yaml`).
+  - Confirmation for "all off" (`*`) and for unlocking a lock.
+  - The action journal is kept in `/share/minitel-ha/journal.json`.
+  - Screens in French or English (`language` option).
+  - `display`, `alerts` and `discovery` read from `/share/minitel-ha/config.yaml`.
+
+- **Under the hood**
+  One logic shared by the Minitel and the browser, automated tests and CI,
+  dependencies pinned in `requirements.txt`, base image 3.23, watchdog,
+  option translations. The add-on code is checked against Minitel-HA by CI.
+
+- **Behaviour change**
+  In the menu, a letter now opens its mode directly (no `ENVOI` needed), as
+  in every other mode.
+
 # What's new in v1.2.0
 
 - **No token required**
