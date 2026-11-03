@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Linter des add-ons Home Assistant
+        uses: frenck/action-addon-linter@v2
+        with:
+          path: "./minitel-ha"
+
+  sync:
+    # Le code de l'add-on est une copie de Minitel-HA (tools/sync_addon.sh) :
+    # on verifie qu'il est identique a la branche main de Minitel-HA.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Mrt0t0/Minitel-HA
+          ref: main
+          path: upstream
+      - name: Comparaison avec Minitel-HA
+        run: |
+          status=0
+          for f in $(cat minitel-ha/SHARED_FILES); do
+            if ! cmp -s "upstream/$f" "minitel-ha/$f"; then
+              echo "::error file=minitel-ha/$f::different de Minitel-HA/$f (lancez tools/sync_addon.sh)"
+              status=1
+            fi
+          done
+          exit $status
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Construction de l'image (amd64)
+        run: docker build --build-arg BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.23 -t minitel-ha minitel-ha
