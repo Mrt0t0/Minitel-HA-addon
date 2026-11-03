@@ -27,7 +27,7 @@
 
 - **Under the hood**
   One logic shared by the Minitel and the browser, automated tests and CI,
-  dependencies pinned in `requirements.txt`, base image 3.23, watchdog,
+  dependencies pinned in `requirements.txt`, base image 3.23, Docker health check,
   option translations. The add-on code is checked against Minitel-HA by CI.
 
 - **Behaviour change**

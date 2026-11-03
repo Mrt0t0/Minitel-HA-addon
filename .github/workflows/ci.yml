@@ -8,7 +8,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Linter des add-ons Home Assistant
         uses: frenck/action-addon-linter@v2
         with:
@@ -19,8 +19,8 @@ jobs:
     # on verifie qu'il est identique a la branche main de Minitel-HA.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
         with:
           repository: Mrt0t0/Minitel-HA
           ref: main
@@ -39,6 +39,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Construction de l'image (amd64)
         run: docker build --build-arg BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.23 -t minitel-ha minitel-ha
